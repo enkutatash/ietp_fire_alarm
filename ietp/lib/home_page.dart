@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ietp/firebase_operation.dart';
 import 'package:ietp/front_page.dart';
+import 'package:ietp/onboarding_page.dart';
 import 'package:ietp/widget/button.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -16,7 +17,12 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('IETP'),
+        title: const Text(
+          'Safe Sprinkler System',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,6 +100,9 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>OnboardingPage()));
+      },child: Icon(Icons.miscellaneous_services_rounded),),
     );
   }
 }

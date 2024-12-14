@@ -12,7 +12,12 @@ class FrontPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('IETP'),
+        title: const Text(
+          'Safe Sprinkler System',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: Center(
         child: Column(

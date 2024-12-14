@@ -2,9 +2,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ietp/front_page.dart';
+import 'package:ietp/map_page.dart';
 import 'package:ietp/notification_service.dart';
+import 'package:ietp/onboarding_page.dart';
 import 'package:just_audio/just_audio.dart';
-
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // Initialize Firebase to ensure it's ready
@@ -35,11 +36,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'IETP',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: FrontPage()
-    );
+        title: 'IETP',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FrontPage());
   }
 }
