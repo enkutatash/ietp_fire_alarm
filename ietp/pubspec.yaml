@@ -41,6 +41,7 @@ dependencies:
   flutter_local_notifications: ^18.0.1
   just_audio_background: ^0.0.1-beta.13
   just_audio: ^0.9.42
+  google_maps_flutter: ^2.10.0
  
 
 dev_dependencies:
