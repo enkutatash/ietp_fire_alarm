@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
 
-Future<void> saveToken() async {
+Future<void> saveToken(String name) async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -10,9 +10,12 @@ Future<void> saveToken() async {
 
   await firestore.collection('users').add({
     'token': deviceToken,
+    'name':name,
     'timestamp': FieldValue.serverTimestamp(), 
   });
 }
+
+
 
 Future<void> deleteToken() async {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -22,6 +25,22 @@ Future<void> deleteToken() async {
 
   QuerySnapshot querySnapshot = await firestore
       .collection('users')
+      .where('token', isEqualTo: deviceToken)
+      .get();
+
+  querySnapshot.docs.forEach((doc) {
+    doc.reference.delete();
+  });
+}
+
+Future<void> safeState() async {
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  String? deviceToken = await messaging.getToken();
+
+  QuerySnapshot querySnapshot = await firestore
+      .collection('in_danger')
       .where('token', isEqualTo: deviceToken)
       .get();
 

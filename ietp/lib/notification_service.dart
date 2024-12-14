@@ -43,7 +43,7 @@ class NotificationService {
         .listen((firebase_messaging.RemoteMessage message) async {
       print('Foreground message received: ${message.notification?.title}');
       _showNotification(message);
-      _playAlarm();
+      // _playAlarm();
     });
 
     // Handle background messages
@@ -86,5 +86,10 @@ class NotificationService {
     await player.setAsset('assets/music/alart.mp3');
     player.setLoopMode(LoopMode.one);
     player.play();
+  }
+
+  void _stopAlarm() async {
+    final player = AudioPlayer();
+    await player.stop();
   }
 }
